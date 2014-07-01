@@ -40,7 +40,9 @@ public class AddItem extends JPanel{
 		
 		//set layout and add button to frame
 		setLayout(grid);
+		add(checkBox, FlowLayout.LEFT);
 		add(button, FlowLayout.LEFT);
+
 		
 		//set background color and border color
 		setBackground(new Color(171, 217, 200));

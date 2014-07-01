@@ -9,6 +9,8 @@ public class AddItem extends JPanel{
 	private JButton button;
 	private FlowLayout grid;
 	private Dimension d;
+	private JCheckBox checkBox;
+	private boolean showPopup = false;
 	
 	public AddItem(mainFrame frame) {
 		//create frame, button, dimensions and layouts
@@ -16,6 +18,7 @@ public class AddItem extends JPanel{
 		button = new JButton("Add");
 		d = new Dimension(450, 40);
 		grid = new FlowLayout();
+		checkBox = new JCheckBox("Popup");
 		
 		//set size for frame
 		setPreferredSize(d);
@@ -28,6 +31,12 @@ public class AddItem extends JPanel{
 				makeCardFrame();
 			}
 		});
+		
+		 checkBox.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 showPopup = checkBox.isEnabled();
+			 }
+		 });
 		
 		//set layout and add button to frame
 		setLayout(grid);
@@ -52,6 +61,10 @@ public class AddItem extends JPanel{
 	public void giveItem(PriceItem t) {
 		PriceItem price = t;
 		parentFrame.addItem(price);
+	}
+	
+	public boolean getPopup() {
+		return showPopup;
 	}
 
 }

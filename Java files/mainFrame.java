@@ -15,10 +15,12 @@ public class mainFrame extends JFrame{
 	
 	private JPanel itemsPanel = new JPanel();
 	private JScrollPane scrollPane;
+	AddItem added;
 	
 	private BoxLayout boxLayout = new BoxLayout(itemsPanel, BoxLayout.Y_AXIS);
 	
 	public mainFrame() {
+		
 		timer.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				checkForUpdates(Priority.HIGH);
@@ -39,7 +41,8 @@ public class mainFrame extends JFrame{
 		
 		itemsPanel.setLayout(boxLayout);
 		
-		itemsPanel.add(new AddItem(this));
+		added = new AddItem(this);
+		itemsPanel.add(added);
 
 		loadItems();
 		scrollPane = new JScrollPane(itemsPanel);
@@ -107,7 +110,7 @@ public class mainFrame extends JFrame{
 			for (int i = 0; i < list2.size(); i++) {
 				//need to convert the serializable items to PriceItem items
 				itemS = (PriceItemSerializable)list2.get(i);
-				pItem = new PriceItem(itemS.priority, this, itemS.html, itemS.itemName, itemS.originalPrice, itemS.notificationPrice, itemS.url, itemS.look);
+				pItem = new PriceItem(itemS.priority, this, itemS.html, itemS.itemName, itemS.originalPrice, itemS.notificationPrice, itemS.url, itemS.look, added);
 				addItem(pItem);
 				//addItem
 			}

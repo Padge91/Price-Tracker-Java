@@ -15,6 +15,7 @@ public class PriceItem extends JPanel implements ActionListener{
 	private String whatToLookFor;	
 	private int timesMissed = 0;
 	private boolean ableToRun = true;
+	private boolean popup;
 	
 	private URL url;
 	private BigDecimal originalPrice;
@@ -43,7 +44,7 @@ public class PriceItem extends JPanel implements ActionListener{
 	
 	private JEditorPane editor;
 		
-	public PriceItem(Priority prior, mainFrame p, String html, String item, BigDecimal highlightedPrice, BigDecimal wantedPrice, URL url, String look) {
+	public PriceItem(Priority prior, mainFrame p, String html, String item, BigDecimal highlightedPrice, BigDecimal wantedPrice, URL url, String look, AddItem added) {
 		this.html = html;
 		itemName = item;
 		originalPrice = highlightedPrice;
@@ -53,6 +54,7 @@ public class PriceItem extends JPanel implements ActionListener{
 		parentPanel = p;
 		whatToLookFor = look;
 		priority = prior;
+		popup = added.getPopup();
 		
 		//set format for decimals
 		format.setMinimumFractionDigits(2);
@@ -290,6 +292,17 @@ public class PriceItem extends JPanel implements ActionListener{
 		if (timesMissed <= 2) {
 			if ((currentPrice.floatValue() < notificationPrice.floatValue())) {
 				changeColor(new Color(166, 217, 106));
+				
+				if (popup) {
+					int reply = JOptionPane.showConfirmDialog(parentPanel, itemName + " notification price has been reached. Open webpage?");
+					if (reply == JOptionPane.YES_OPTION) {
+						goToWebsite();
+						JOptionPane.getRootFrame().dispose();
+					}
+					else {
+						JOptionPane.getRootFrame().dispose();
+					}
+				}
 			}
 			else {
 				changeColor(new Color(171, 217, 233));

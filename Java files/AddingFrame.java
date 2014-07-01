@@ -122,7 +122,7 @@ public class AddingFrame extends JFrame implements ActionListener{
 	//make new item with fields from frames
 	public void makeItem() {
 		//could put handleURLStuff in here
-		priceItem = new PriceItem(Priority.LOW, item.getFrame(), html, name, new BigDecimal(Float.parseFloat(stringPrice)), new BigDecimal(0.00), url, whatToLookFor);
+		priceItem = new PriceItem(Priority.LOW, item.getFrame(), html, name, new BigDecimal(Float.parseFloat(stringPrice)), new BigDecimal(0.00), url, whatToLookFor, item);
 	}
 	
 	//method to call and show cards

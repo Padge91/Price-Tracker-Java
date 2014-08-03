@@ -4,6 +4,7 @@ Price-Tracker
 Tracks changes in prices on Websites
 
 Developer: Nick Padgett
+Contact: nickpadge@gmail.com
 Date: 20 May 2014
 
 Java program that will track price changes on websites. Requires the html, price, and a description. 
